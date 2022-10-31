@@ -27,9 +27,11 @@ def classify(customer_profile):
     customer_information = customer_profile.dict()
     vector = dv.transform(customer_information)
     prediction = model_runner.predict_proba.run(vector)
-    print(prediction)
+    # return prediction # trying this --> working but now no longer returning other "return" content
+    # print(prediction)
+    #return prediction[:,1]
 
-    result = prediction[1]
+    result = prediction[:,1]
     if result > 0.3:
         return { "status": "VERY LIKELY INTERESTED" }
     elif result > 0.2:

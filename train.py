@@ -33,8 +33,9 @@ rf = RandomForestClassifier(n_estimators = 50,
 rf.fit(X_train, y_train)
 
 # + saving final model to file using pickle or bentoml
-saved_model = bentoml.sklearn.save_model("insurance_response", rf,
-                                        custom_objects = {
-                                            "dictVectorizer": dv
-                                        })
+saved_model = bentoml.sklearn.save_model("insurance_response", 
+                                         rf,
+                                         custom_objects = {"dictVectorizer": dv},
+                                         signatures = {"predict_proba": {"batchable": False}}
+                                        )
 print(f"Model saved: {saved_model}")
