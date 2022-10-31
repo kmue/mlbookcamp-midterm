@@ -1,1 +1,10 @@
-# bentofile to configure bentoml environment
+service: "service.py:svc"
+labels:
+   owner: konrad
+   project: mlbookcamp-midterm
+include:
+- "*.py"
+python:
+   packages:
+      - pydantic
+      - sklearn
